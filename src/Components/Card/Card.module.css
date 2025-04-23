@@ -1,0 +1,29 @@
+.card {
+    height: clamp(20vh, auto, 25vh);
+    background: #f0b28679;
+    border-radius: 10px;
+    padding-left: 5%;
+    font-family: Arial, serif;
+    position: relative;
+}
+
+.card > h3 {
+    font-size: 20px;
+    font-weight: 800;
+    padding-right: 5%;
+    line-height: 1rem;
+    text-transform: uppercase;
+}
+
+.card > p {
+    margin-right: 10%;
+}
+
+.card > button {
+    background: #9e643a;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 5px;
+    border: #f0b286 2px solid;
+}

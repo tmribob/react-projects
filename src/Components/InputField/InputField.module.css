@@ -1,0 +1,15 @@
+.inputText{
+    background: #f0b28679;
+    border-radius: 10px;
+    border: none;
+    font-family: Arial, serif;
+    padding-left: 0.5em;
+    font-size: 14px;
+    height: 75%;
+    width: clamp(10vw,25vw,15vw);
+}
+
+.inputText::placeholder {
+    font-family: Arial, serif;
+    color: black;
+}

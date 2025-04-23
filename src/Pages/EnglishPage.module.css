@@ -1,0 +1,33 @@
+.inputText {
+    overflow: hidden;
+    resize: none; /* опционально, чтобы запретить ручное изменение размера */
+    box-sizing: border-box; /* для корректного подсчёта размеров */
+    width: 40%; /* или нужная ширина */
+    border: #f0b286 4px solid;
+    border-radius: 10px;
+    height: 100%;
+    background: #9e643a;
+    padding: 1em;
+    font-size: 14px;
+    font-weight: 700;
+    color: #f0b286;
+}
+.formInput {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    margin: 10vh 10vw;
+    height: 80vh;
+    width: 80vw;
+}
+button {
+    margin:5px 15px;
+}
+
+span {
+    margin-right: 1em;
+}

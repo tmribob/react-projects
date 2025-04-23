@@ -1,0 +1,17 @@
+.newPostField {
+    height: 10vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 1em;
+}
+
+.newPostField > button {
+    background: #9e643a;
+    border-radius: 10px;
+    border: #f0b286 4px solid;
+    font-family: Arial, serif;
+    padding: 0.5em;
+    font-size: 14px;
+    height: 75%;
+}
