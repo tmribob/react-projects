@@ -19,15 +19,3 @@
     justify-content: center;
     align-items: center;
 }
-body {
-    margin: 10vh 10vw;
-    height: 80vh;
-    width: 80vw;
-}
-button {
-    margin:5px 15px;
-}
-
-span {
-    margin-right: 1em;
-}

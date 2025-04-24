@@ -1,10 +1,11 @@
 import "./App.css";
 import {useEffect, useState} from "react";
-import axios from "axios";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import PostsPage from "./Pages/PostsPage";
 import PokemonPage from "./Pages/PokemonPage";
 import EnglishPage from "./Pages/EnglishPage";
+import CalculatePage from "./Pages/CalculatePage";
+import HeadNav from "./Components/HeadNav/HeadNav";
 
 
 const App = () => {
@@ -32,11 +33,6 @@ const App = () => {
     const delPost = (idPost) => {
         setPosts(posts.filter(post => post.id !== idPost))
     }
-    const getPost = async () => {
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
-        setPosts(response.data.slice(0, 7));
-
-    };
 
     // Pokemon
 
@@ -73,7 +69,7 @@ const App = () => {
     }
     const addWord = (index) => {
         setSpans([...spans, buttons[index]]);
-        setButtons(buttons.filter((_,indexBut) => indexBut !== index))
+        setButtons(buttons.filter((_, indexBut) => indexBut !== index))
     }
     const nextSentence = () => {
         if (spans.length === currentSentence.length) {
@@ -94,30 +90,33 @@ const App = () => {
     }
     const delWord = (index) => {
         setButtons([...buttons, spans[index]]);
-        setSpans(spans.filter((_,indexSpan) => indexSpan !== index))
+        setSpans(spans.filter((_, indexSpan) => indexSpan !== index))
     }
 
 
     useEffect(() => {
-        // getPost().then();
         // getPokemon().then();
     }, []);
 
 
     return (<>
             <BrowserRouter>
+                <HeadNav />
                 <Routes>
-                    <Route path={"*"}
-                           element={<PostsPage posts={posts} addPost={addPost} changeBodyInput={changeBodyInput}
-                                               changeTitleInput={changeTitleInput} newPostTitle={newPostTitle}
-                                               delPost={delPost} newPostBody={newPostBody}/>}/>
-                    <Route path={"pokemon"} element={<PokemonPage newPokemon={getPokemon} id={pokemon}/>}/>
-                    <Route path={"english"} element={<EnglishPage text={textEnglish} inputText={inputText}
+                    <Route path={"/posts"} element={<PostsPage posts={posts} addPost={addPost}
+                                                              changeBodyInput={changeBodyInput}
+                                                              changeTitleInput={changeTitleInput}
+                                                              newPostTitle={newPostTitle}
+                                                              delPost={delPost}
+                                                              newPostBody={newPostBody}/>}/>
+                    <Route path={"/pokemon"} element={<PokemonPage newPokemon={getPokemon} id={pokemon}/>}/>
+                    <Route path={"/english"} element={<EnglishPage text={textEnglish} inputText={inputText}
                                                                   changeInputText={changeInputText}
                                                                   splitText={splitText} buttons={buttons}
                                                                   spans={spans} addWord={addWord}
                                                                   delWord={delWord} clearSentence={clearSentence}
                                                                   nextSentence={nextSentence}/>}/>
+                    <Route path={"/calculator"} element={<CalculatePage/>}/>
                 </Routes>
             </BrowserRouter>
 
