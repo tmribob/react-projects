@@ -1,6 +1,6 @@
 import style from "./FormHeader.module.css"
 import InputField from "../InputField/InputField";
-import ButtonConfirm from "../ButtonConfirm/ButtonConfirm";
+import Button from "../Button/Button";
 
 const FormHeader = ({titleState, bodyState, addPost}) => {
     return (<header className={style.newPostField}>
@@ -12,7 +12,7 @@ const FormHeader = ({titleState, bodyState, addPost}) => {
                         value={bodyState.body}
                         holder="Enter content post"
                         onChange={bodyState.setBody}/>
-            <ButtonConfirm onClick={addPost}/>
+            <Button onClick={addPost} content={"Confirm"}/>
         </header>);
 }
 

@@ -1,0 +1,10 @@
+.main {
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: "back percent division multiplication"
+                         "area7 area8 area9 subtraction"
+                         "area4 area5 area6 addition"
+                         "area1 area2 area3 result"
+                         "clear area0 point result";
+}

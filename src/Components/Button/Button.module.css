@@ -1,9 +1,10 @@
-.buttonConfirm {
+.button {
     background: #9e643a;
     border-radius: 10px;
     border: #f0b286 4px solid;
     font-family: Arial, serif;
-    padding: 0.5em;
+    font-weight: 700;
     font-size: 14px;
-    height: 75%;
+    padding: 0.5em;
+    color: #6c3106;
 }
