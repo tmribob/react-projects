@@ -10,12 +10,15 @@
     padding: 1em;
     font-size: 14px;
     font-weight: 700;
-    color: #f0b286;
-}
+    color: #6c3106;}
 .formInput {
     height: 50vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.inputText:focus{
+    border: #f0b286 6px solid;
+    outline: none;
 }

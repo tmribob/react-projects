@@ -45,27 +45,27 @@ const App = () => {
 
     // English Game Memory
 
-    const [textEnglish, setTextEnglish] = useState([]);
+    let textEnglish = [];
+    let currentSentence = [];
+    let indexSentence = 0;
     const [inputText, setInputText] = useState("");
-    const [currentSentence, setCurrentSentence] = useState([]);
     const [buttons, setButtons] = useState([]);
-    const [indexSentence, setIndexSentence] = useState(0);
     const [spans, setSpans] = useState([]);
 
     const splitText = () => {
         const sentences = inputText.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
         const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
-        setButtons(result[indexSentence]);
-        setTextEnglish(result);
-        setCurrentSentence(result[indexSentence]);
+        setButtons(() => (result[indexSentence]));
+        textEnglish = result;
+        currentSentence = result[indexSentence];
 
     }
 
     const changeSentence = () => {
-        setCurrentSentence(textEnglish[indexSentence + 1])
+        currentSentence = textEnglish[indexSentence + 1];
         setSpans([])
         setButtons(textEnglish[indexSentence + 1])
-        setIndexSentence(indexSentence + 1)
+        indexSentence++;
     }
     const addWord = (index) => {
         setSpans([...spans, buttons[index]]);
