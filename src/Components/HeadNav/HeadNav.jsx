@@ -6,7 +6,7 @@ const HeadNav = () => {
     return (<nav className={style.navigator}>
         {
             refs.map((ref) => (
-                <NavLink to={"/" + ref} className={style.link}>{ref.toUpperCase()}</NavLink>
+                <NavLink to={"/" + ref} key={ref} className={style.link}>{ref.toUpperCase()}</NavLink>
             ))
         }
 
