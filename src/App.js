@@ -12,8 +12,19 @@ import UseEnglishState from "./Hooks/UseEnglishState"
 import UseCalculatorState from "./Hooks/UseCalculatorState"
 
 const App = () => {
-    const {posts, addPost, changeBodyInput, changeTitleInput, newPostTitle, delPost, newPostBody} = UsePostsState();
+    const {
+        posts,
+        addPost,
+        changeBodyInput,
+        changeTitleInput,
+        newPostTitle,
+        delPost,
+        newPostBody,
+        textNotification,
+        isVisible
+    } = UsePostsState();
     const {getPokemon, pokemon} = UsePokemonState;
+    const {inputCalculate, buttonsCalculate, changeInput} = UseCalculatorState();
     const {
         textEnglish,
         inputText,
@@ -26,7 +37,6 @@ const App = () => {
         clearSentence,
         nextSentence
     } = UseEnglishState();
-    const {inputCalculate, buttonsCalculate, changeInput} = UseCalculatorState();
 
     return (
         <BrowserRouter>
@@ -35,7 +45,8 @@ const App = () => {
                 <Route path={"/posts"}
                        element={<PostsPage posts={posts} addPost={addPost} changeBodyInput={changeBodyInput}
                                            changeTitleInput={changeTitleInput} newPostTitle={newPostTitle}
-                                           delPost={delPost} newPostBody={newPostBody}/>}/>
+                                           delPost={delPost} newPostBody={newPostBody}
+                                           textNotification={textNotification} isVisible={isVisible}/>}/>
                 <Route path={"/pokemon"} element={<PokemonPage newPokemon={getPokemon} id={pokemon}/>}/>
                 <Route path={"/english"}
                        element={<EnglishPage text={textEnglish} inputText={inputText} changeInputText={changeInputText}

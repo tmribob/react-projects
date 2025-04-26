@@ -4,6 +4,8 @@ const UsePostsState = () => {
     const [posts, setPosts] = useState([]);
     const [newPostTitle, setPostTitle] = useState("");
     const [newPostBody, setPostBody] = useState("");
+    const [isVisible, setVisible] = useState(false);
+    const [textNotification, setTextNotification] = useState("");
 
     const changeTitleInput = (e) => {
         setPostTitle(e.target.value);
@@ -22,12 +24,12 @@ const UsePostsState = () => {
         setPosts([...posts, {title: newPostTitle, body: newPostBody, id: counterID + 1}])
         setPostTitle("")
         setPostBody("")
-        alert(newPostTitle + " добавлен")
+        setNotification(`${newPostTitle} добавлен`)
     }
 
     const delPost = (idPost) => {
-        alert(posts[idPost].title + " удалён")
-        setPosts(posts.filter(post => post.id !== idPost))
+        setNotification(`${posts[idPost].title} удалён`)
+        setPosts(() => posts.filter(post => post.id !== idPost))
     }
 
     // useEffect(() => {
@@ -36,7 +38,30 @@ const UsePostsState = () => {
     //     }
     // }, [posts]);
 
-    return {posts, addPost, changeBodyInput, changeTitleInput, newPostTitle, delPost, newPostBody}
+    useEffect(() => {
+        let timer;
+        if (isVisible) {
+            timer = setTimeout(() => setVisible(false), 3000);
+        }
+        return () => clearTimeout(timer);
+    }, [isVisible]);
+
+    const setNotification = (context) => {
+        setTextNotification(() => context)
+        setVisible(true)
+    }
+
+    return {
+        posts,
+        addPost,
+        changeBodyInput,
+        changeTitleInput,
+        newPostTitle,
+        delPost,
+        newPostBody,
+        textNotification,
+        isVisible
+    }
 
 }
 export default UsePostsState

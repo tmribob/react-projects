@@ -1,0 +1,17 @@
+.notification{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #f0b286;
+    border-radius: 10px;
+    border: #6c3106 2px solid;
+    padding: 0 15px;
+    max-width: 10vw;
+}
+
+
+.notification p{
+    color: #6c3106;
+    font-weight: 700;
+    font-size: 16px;
+}
