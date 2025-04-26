@@ -15,3 +15,7 @@
     font-family: Arial, serif;
     color: #6c3106;
 }
+.inputText:focus{
+    border: #f0b286 6px solid;
+    outline: none;
+}
