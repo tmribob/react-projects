@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const UsePostsState = () => {
     const [posts, setPosts] = useState([]);
@@ -22,15 +22,17 @@ const UsePostsState = () => {
         setPosts([...posts, {title: newPostTitle, body: newPostBody, id: counterID + 1}])
         setPostTitle("")
         setPostBody("")
+        alert(newPostTitle + " добавлен")
     }
 
     const delPost = (idPost) => {
+        alert(posts[idPost].title + " удалён")
         setPosts(posts.filter(post => post.id !== idPost))
     }
 
     // useEffect(() => {
     //     if(posts.length>0){
-    //         alert(posts[posts.length-1].title + " загружен")
+    //         alert(posts[posts.length-1].title + " изменён")
     //     }
     // }, [posts]);
 

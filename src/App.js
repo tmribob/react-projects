@@ -9,7 +9,7 @@ import HeadNav from "./Components/HeadNav/HeadNav";
 import UsePostsState from "./Hooks/UsePostsState"
 import UsePokemonState from "./Hooks/UsePokemonState"
 import UseEnglishState from "./Hooks/UseEnglishState"
-import UseCalculatorState from "/Hooks/UseCalculatorState"
+import UseCalculatorState from "./Hooks/UseCalculatorState"
 
 const App = () => {
     const {posts, addPost, changeBodyInput, changeTitleInput, newPostTitle, delPost, newPostBody} = UsePostsState();
