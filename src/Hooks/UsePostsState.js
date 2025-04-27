@@ -1,12 +1,11 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import useNotificationState from "./UseNotificationState";
 
 const UsePostsState = () => {
     const [posts, setPosts] = useState([]);
     const [newPostTitle, setPostTitle] = useState("");
     const [newPostBody, setPostBody] = useState("");
-    const [isVisible, setVisible] = useState(false);
-    const [textNotification, setTextNotification] = useState("");
-
+    const {setNotification} = useNotificationState();
     const changeTitleInput = (e) => {
         setPostTitle(e.target.value);
     }
@@ -38,19 +37,6 @@ const UsePostsState = () => {
     //     }
     // }, [posts]);
 
-    useEffect(() => {
-        let timer;
-        if (isVisible) {
-            timer = setTimeout(() => setVisible(false), 3000);
-        }
-        return () => clearTimeout(timer);
-    }, [isVisible]);
-
-    const setNotification = (context) => {
-        setTextNotification(() => context)
-        setVisible(true)
-    }
-
     return {
         posts,
         addPost,
@@ -58,9 +44,7 @@ const UsePostsState = () => {
         changeTitleInput,
         newPostTitle,
         delPost,
-        newPostBody,
-        textNotification,
-        isVisible
+        newPostBody
     }
 
 }

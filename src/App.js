@@ -10,6 +10,7 @@ import UsePostsState from "./Hooks/UsePostsState"
 import UsePokemonState from "./Hooks/UsePokemonState"
 import UseEnglishState from "./Hooks/UseEnglishState"
 import UseCalculatorState from "./Hooks/UseCalculatorState"
+import UseNotificationState from "./Hooks/UseNotificationState";
 
 const App = () => {
     const {
@@ -19,9 +20,7 @@ const App = () => {
         changeTitleInput,
         newPostTitle,
         delPost,
-        newPostBody,
-        textNotification,
-        isVisible
+        newPostBody
     } = UsePostsState();
     const {getPokemon, pokemon} = UsePokemonState;
     const {inputCalculate, buttonsCalculate, changeInput} = UseCalculatorState();
@@ -37,6 +36,8 @@ const App = () => {
         clearSentence,
         nextSentence
     } = UseEnglishState();
+    const {textNotification, isVisible} = UseNotificationState();
+
 
     return (
         <BrowserRouter>
