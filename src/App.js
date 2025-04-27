@@ -23,7 +23,7 @@ const App = () => {
         newPostBody
     } = UsePostsState();
     const {getPokemon, pokemon} = UsePokemonState;
-    const {inputCalculate, buttonsCalculate, changeInput} = UseCalculatorState();
+    const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState();
     const {
         textEnglish,
         inputText,
@@ -54,8 +54,8 @@ const App = () => {
                                              splitText={splitText} buttons={buttons} spans={spans} addWord={addWord}
                                              delWord={delWord} clearSentence={clearSentence}
                                              nextSentence={nextSentence}/>}/>
-                <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate} changeInput={changeInput}
-                                                                    input={inputCalculate}/>}/>
+                <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate} input={inputCalculate}
+                                                                    text={firstSummand+" "+operator} />}/>
             </Routes>
         </BrowserRouter>
     );
