@@ -1,13 +1,11 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Button from "../Components/Button/Button";
-import useNotificationState from "./UseNotificationState";
 
-const UseCalculatorState = () => {
+const UseCalculatorState = (showNotification) => {
     const [inputCalculate, setInputCalculate] = useState('0');
     let buttonsCalculate = [];
     const [firstSummand, setFirstSummand] = useState('');
-    const [operator, setOperator] = useState('')
-    const {setNotification} = useNotificationState();
+    const [operator, setOperator] = useState('');
 
     const action = (element) => {
         if (inputCalculate === '0') {
@@ -39,7 +37,7 @@ const UseCalculatorState = () => {
             } else if (text.length > 1) {
                 return text.slice(0, -1);
             }
-        })
+        });
     }
     const equals = (isButton = true) => {
         if (operator === '' || firstSummand === null) {
@@ -58,7 +56,7 @@ const UseCalculatorState = () => {
                 break;
             case '/':
                 if (inputCalculate === '0') {
-                    setNotification('На ноль делить нельзя');
+                    showNotification('На ноль делить нельзя');
                     return;
                 }
                 result = parseFloat(firstSummand) / parseFloat(inputCalculate);
@@ -94,7 +92,7 @@ const UseCalculatorState = () => {
         buttonsCalculate.push(<Button key={'+'} content={'+'} onClick={() => action('+')}/>);
     }
 
-    createButtons()
+    createButtons();
 
     return {inputCalculate, buttonsCalculate, firstSummand, operator};
 }

@@ -11,8 +11,10 @@ import UsePokemonState from "./Hooks/UsePokemonState"
 import UseEnglishState from "./Hooks/UseEnglishState"
 import UseCalculatorState from "./Hooks/UseCalculatorState"
 import UseNotificationState from "./Hooks/UseNotificationState";
+import Notification from "./Components/Notification/Notification";
 
 const App = () => {
+    const {notification,showNotification} = UseNotificationState();
     const {
         posts,
         addPost,
@@ -21,9 +23,9 @@ const App = () => {
         newPostTitle,
         delPost,
         newPostBody
-    } = UsePostsState();
+    } = UsePostsState(showNotification);
     const {getPokemon, pokemon} = UsePokemonState;
-    const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState();
+    const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
     const {
         textEnglish,
         inputText,
@@ -36,18 +38,17 @@ const App = () => {
         clearSentence,
         nextSentence
     } = UseEnglishState();
-    const {textNotification, isVisible} = UseNotificationState();
 
 
     return (
         <BrowserRouter>
             <HeadNav/>
+            {notification.isVisible && <Notification context={notification.text}/>}
             <Routes>
                 <Route path={"/posts"}
                        element={<PostsPage posts={posts} addPost={addPost} changeBodyInput={changeBodyInput}
                                            changeTitleInput={changeTitleInput} newPostTitle={newPostTitle}
-                                           delPost={delPost} newPostBody={newPostBody}
-                                           textNotification={textNotification} isVisible={isVisible}/>}/>
+                                           delPost={delPost} newPostBody={newPostBody}/>}/>
                 <Route path={"/pokemon"} element={<PokemonPage newPokemon={getPokemon} id={pokemon}/>}/>
                 <Route path={"/english"}
                        element={<EnglishPage text={textEnglish} inputText={inputText} changeInputText={changeInputText}
@@ -55,7 +56,7 @@ const App = () => {
                                              delWord={delWord} clearSentence={clearSentence}
                                              nextSentence={nextSentence}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate} input={inputCalculate}
-                                                                    text={firstSummand+" "+operator} />}/>
+                                                                    text={firstSummand + " " + operator}/>}/>
             </Routes>
         </BrowserRouter>
     );

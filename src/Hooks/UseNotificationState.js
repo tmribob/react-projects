@@ -1,20 +1,22 @@
 import {useEffect, useState} from "react";
 
 const UseNotificationState = () => {
-    const [textNotification, setTextNotification] = useState("");
-    const [isVisible, setVisible] = useState(false);
+    const [notification, setNotification] = useState({text: "", isVisible: false});
+
     useEffect(() => {
         let timer;
-        if (isVisible) {
-            timer = setTimeout(() => setVisible(false), 3000);
+        if (notification) {
+            timer = setTimeout(() => {
+                setNotification(prev => ({...prev, isVisible: false}));
+            }, 3000);
         }
         return () => clearTimeout(timer);
-    }, [isVisible]);
+    }, [notification.isVisible]);
 
-    const setNotification = (context) => {
-        setTextNotification(() => context)
-        setVisible(true)
+    const showNotification = (content) => {
+        setNotification({text:content,isVisible: true});
+
     }
-    return {textNotification,setNotification,isVisible}
+    return {notification, showNotification}
 }
 export default UseNotificationState;

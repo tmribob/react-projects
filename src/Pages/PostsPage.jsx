@@ -9,14 +9,12 @@ const PostsPage = ({
                        changeBodyInput,
                        addPost,
                        posts,
-                       delPost,
-                       textNotification,
-                       isVisible
+                       delPost
                    }) => {
     return (<>
         <FormHeader titleState={{title: newPostTitle, setTitle: changeTitleInput}}
                     bodyState={{body: newPostBody, setBody: changeBodyInput}} addPost={addPost}/>
-        <Posts posts={posts} delPost={delPost} textNotification={textNotification} isVisible={isVisible}/>
+        <Posts posts={posts} delPost={delPost}/>
     </>)
 }
 
