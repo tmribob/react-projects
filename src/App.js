@@ -34,7 +34,7 @@ const App = () => {
         clearSentence,
         nextSentence
     } = UseEnglishState();
-    const {todoList, addTask, editTask, delTask, inputTask, changeInput} = UseTODOState(showNotification);
+    const {todoList, addTask, delTask, inputTask, changeInput} = UseTODOState(showNotification);
 
     return (<BrowserRouter>
         <HeadNav/>
@@ -52,9 +52,9 @@ const App = () => {
                                          nextSentence={nextSentence}/>}/>
             <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate} input={inputCalculate}
                                                                 text={firstSummand + " " + operator}/>}/>
-            <Route path={"/todo"} element={<TODOPage editTask={editTask} delTask={delTask} list={todoList}
-                                                     input={{value: inputTask, setter: changeInput}}
-                                                     addTask={addTask}/>}/>
+            <Route path={"/todo"}
+                   element={<TODOPage delTask={delTask} list={todoList} input={{value: inputTask, setter: changeInput}}
+                                      addTask={addTask}/>}/>
         </Routes>
     </BrowserRouter>);
 };

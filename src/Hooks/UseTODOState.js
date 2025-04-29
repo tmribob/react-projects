@@ -3,28 +3,23 @@ import {useState} from "react";
 const UseTODOState = (showNotification) => {
     const [todoList, setTodoList] = useState([])
     const [inputTask, setInputTask] = useState("");
+    const [nextId, setNextId] = useState(1);
 
     const addTask = () => {
-        setTodoList((tasks) => {
-            let text = inputTask;
-            if (text !== "") {
-                setInputTask("");
-                return [...tasks, {text, id: tasks.length}];
-            } else {
-                showNotification("Task is void");
-                return tasks;
-            }
-        });
+        if (inputTask.length > 0) {
+            setTodoList((tasks) => [...tasks, {text: inputTask, id: nextId}]);
+            setInputTask("");
+            setNextId(nextId + 1);
+        } else {
+            showNotification("Task is void");
+        }
     }
     const delTask = (id) => {
         setTodoList((tasks) => tasks.filter((task) => task.id !== id));
     }
-    const editTask = (id) => {
-        console.log(id);
-    }
     const changeInput = (e) => {
         setInputTask(() => e.target.value);
     }
-    return {todoList, addTask, editTask, delTask, inputTask, changeInput};
+    return {todoList, addTask, delTask, inputTask, changeInput};
 }
 export default UseTODOState;

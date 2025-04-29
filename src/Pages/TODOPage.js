@@ -1,8 +1,8 @@
 import TaskList from "../Components/TaskList/TaskList";
 
-const TODOPage = ({list,addTask,editTask,delTask,input}) => {
+const TODOPage = ({list, addTask, delTask, input}) => {
 
-    return (<TaskList list={list} addTask={addTask} editTask={editTask} delTask={delTask}
+    return (<TaskList list={list} addTask={addTask} delTask={delTask}
                       input={input}/>)
 }
 
