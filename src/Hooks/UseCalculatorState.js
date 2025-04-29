@@ -1,5 +1,6 @@
 import {useState} from "react";
 import Button from "../Components/Button/Button";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const UseCalculatorState = (showNotification) => {
     const [inputCalculate, setInputCalculate] = useState('0');
@@ -86,7 +87,7 @@ const UseCalculatorState = (showNotification) => {
                                           content={buttonsActions[row]}
                                           onClick={() => action(buttonsActions[row])}/>);
         }
-        buttonsCalculate.push(<Button key={'<X'} content={'<X'} onClick={back}/>);
+        buttonsCalculate.push(<Button key={'<X'} content={<FaDeleteLeft/>} onClick={back}/>);
         buttonsCalculate.push(<Button key={0} content={0} onClick={() => addNumber('0')}/>);
         buttonsCalculate.push(<Button key={'='} content={'='} onClick={equals}/>);
         buttonsCalculate.push(<Button key={'+'} content={'+'} onClick={() => action('+')}/>);
