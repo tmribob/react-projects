@@ -24,7 +24,7 @@ const App = () => {
         delPost,
         newPostBody
     } = UsePostsState(showNotification);
-    const {getPokemon, pokemon} = UsePokemonState;
+    const {getPokemon, pokemon} = UsePokemonState();
     const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
     const {
         textEnglish,
