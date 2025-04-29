@@ -6,9 +6,9 @@ import InputField from "../InputField/InputField";
 const TaskCreator = ({addTask, input, change, editingID}) => {
     const isAnyEditing = editingID !== null
     return (<div className={style.form}>
-        <InputField readonly={isAnyEditing} name={"creatorTask"} holder={"Entry new task"} onChange={change}
+        <InputField disabled={isAnyEditing} name={"creatorTask"} holder={"Entry new task"} onChange={change}
                     value={input}/>
-        <Button disable={isAnyEditing} content={<RiAddLine/>} onClick={addTask}/>
+        <Button disabled={isAnyEditing} content={<RiAddLine/>} onClick={addTask}/>
     </div>)
 }
 

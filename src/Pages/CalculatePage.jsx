@@ -4,7 +4,7 @@ import InputField from "../Components/InputField/InputField";
 const CalculatePage = ({input, buttons, text}) => {
 
     return (<div style={{padding: "0 40%"}}>
-        <InputField readonly value={input}/>
+        <InputField disabled value={input}/>
         <p>{text}</p>
         <GridField buttons={buttons}/>
     </div>)

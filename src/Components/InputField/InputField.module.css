@@ -17,3 +17,6 @@
     border: #f0b286 6px solid;
     outline: none;
 }
+.inputText:disabled{
+    opacity: 0.5;
+}
