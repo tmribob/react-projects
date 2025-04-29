@@ -3,25 +3,37 @@ import Button from "../Button/Button";
 import {RiDeleteBin2Line, RiEdit2Line, RiCheckFill} from "react-icons/ri";
 import InputField from "../InputField/InputField";
 
-const Task = ({task, number, editingID, operations, inputEditing}) => {
+const Task = ({
+                  task,
+                  number,
+                  editingID,
+                  startEditing,
+                  delTask,
+                  saveTask,
+                  editingText,
+                  changeTask
+              }) => {
+    const isThisEditing = editingID === task.id;
+    const isAnyEditing = editingID !== null;
+
     return (<div className={style.element}>
         <p className={style.number}>№{number}</p>
-        {!(editingID === task.id) ? <>
+        {!isThisEditing ? <>
             <p className={style.text}>{task.text}</p>
-            <Button disable={!(editingID === null)}
+            <Button disabled={isAnyEditing}
                     content={<RiEdit2Line/>}
-                    onClick={() => operations.startEditing(task.id, task.text)}/>
+                    onClick={() => startEditing(task.id, task.text)}/>
         </> : <>
-            <InputField value={inputEditing.text}
-                        onChange={inputEditing.onChange}
+            <InputField value={editingText}
+                        onChange={changeTask}
                         holder={"New task Text"}/>
             <Button content={<RiCheckFill/>}
-                    onClick={() => operations.saveTask(task.id)}/>
+                    onClick={saveTask}/>
         </>}
 
-        <Button disable={!(editingID === null)}
+        <Button disabled={isAnyEditing}
                 content={<RiDeleteBin2Line/>}
-                onClick={() => operations.delTask(task.id)}/>
+                onClick={() => delTask(task.id)}/>
     </div>)
 }
 export default Task;

@@ -43,9 +43,14 @@ const App = () => {
     const {
         todoList,
         inputTask,
+        changeInput,
         editingID,
-        inputEditing,
-        operations
+        editingText,
+        changeTask,
+        addTask,
+        startEditing,
+        delTask,
+        saveTask
     } = UseTODOState(showNotification);
 
     return (
@@ -75,10 +80,16 @@ const App = () => {
                                                                     input={inputCalculate}
                                                                     text={firstSummand + " " + operator}/>}/>
                 <Route path={"/todo"} element={<TODOPage list={todoList}
-                                                         input={inputTask}
+                                                         inputTask={inputTask}
+                                                         changeInput={changeInput}
                                                          editingID={editingID}
-                                                         inputEditing={inputEditing}
-                                                         operations={operations}/>}/>
+                                                         editingText={editingText}
+                                                         changeTask={changeTask}
+                                                         addTask={addTask}
+                                                         startEditing={startEditing}
+                                                         delTask={delTask}
+                                                         saveTask={saveTask}
+                />}/>
             </Routes>
         </BrowserRouter>
     );

@@ -21,39 +21,39 @@ const UseTODOState = (showNotification) => {
         setTodoList((tasks) => tasks.filter((task) => task.id !== id));
     }
     const startEditing = (id, text) => {
-        if (editingID === null) {
-            setEditingID(() => id);
-            setEditingText(text);
+        setEditingID(id);
+        setEditingText(text);
+    }
+    const saveTask = () => {
+        if (editingText.trim().length > 0) {
+            setEditingID(null);
             setTodoList((tasks) => tasks.map((task) => {
-                if (task.id === id) {
+                if (task.id === editingID) {
                     return {...task, text: editingText};
                 }
                 return task;
             }));
-            console.log(todoList);
+        } else {
+            showNotification("Task is void");
         }
     }
-    const saveTask = (id) => {
-        setEditingID(null);
-        setTodoList((tasks) => tasks.map((task) => {
-            if (task.id === id) {
-                return {...task, text: editingText};
-            }
-            return task;
-        }));
-    }
     const changeInput = (e) => {
-        setInputTask(() => e.target.value);
+        setInputTask(e.target.value);
     }
     const changeTask = (e) => {
-        setEditingText(() => e.target.value);
+        setEditingText(e.target.value);
     }
     return {
         todoList,
-        inputTask: {text: inputTask, onChange: changeInput},
+        inputTask,
+        changeInput,
         editingID,
-        inputEditing: {text: editingText, onChange: changeTask},
-        operations: {addTask, startEditing, delTask, saveTask}
+        editingText,
+        changeTask,
+        addTask,
+        startEditing,
+        delTask,
+        saveTask
     };
 }
 export default UseTODOState;

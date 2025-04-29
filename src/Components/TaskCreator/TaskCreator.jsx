@@ -3,11 +3,12 @@ import Button from "../Button/Button";
 import {RiAddLine} from "react-icons/ri";
 import InputField from "../InputField/InputField";
 
-const TaskCreator = ({addTask, input, change, isEditing}) => {
+const TaskCreator = ({addTask, input, change, editingID}) => {
+    const isAnyEditing = editingID !== null
     return (<div className={style.form}>
-        <InputField readonly={isEditing} name={"creatorTask"} holder={"Entry new task"} onChange={change}
+        <InputField readonly={isAnyEditing} name={"creatorTask"} holder={"Entry new task"} onChange={change}
                     value={input}/>
-        <Button disable={isEditing} content={<RiAddLine/>} onClick={addTask}/>
+        <Button disable={isAnyEditing} content={<RiAddLine/>} onClick={addTask}/>
     </div>)
 }
 

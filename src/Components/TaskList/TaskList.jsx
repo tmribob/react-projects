@@ -2,19 +2,33 @@ import Task from "../Task/Task";
 import TaskCreator from "../TaskCreator/TaskCreator";
 import style from './TaskList.module.css';
 
-const TaskList = ({list, input, editingID, inputEditing, operations}) => {
+const TaskList = ({
+                      list,
+                      inputTask,
+                      editingID,
+                      changeInput,
+                      editingText,
+                      changeTask,
+                      addTask,
+                      startEditing,
+                      delTask,
+                      saveTask
+                  }) => {
     return (<div className={style.list}>
-        <TaskCreator addTask={operations.addTask}
-                     input={input.text}
-                     change={input.onChange}
-                     isEditing={editingID !== null}/>
+        <TaskCreator addTask={addTask}
+                     input={inputTask}
+                     change={changeInput}
+                     editingID={editingID}/>
         {list.map((task, index) => (
             <Task task={task}
                   number={index}
                   key={task.id}
                   editingID={editingID}
-                  operations={operations}
-                  inputEditing={inputEditing}
+                  startEditing={startEditing}
+                  delTask={delTask}
+                  saveTask={saveTask}
+                  editingText={editingText}
+                  changeTask={changeTask}
             />
         ))}
     </div>)
