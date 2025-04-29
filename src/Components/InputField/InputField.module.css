@@ -1,21 +1,19 @@
-.inputText{
+.inputText {
     background: #f0b28679;
     border-radius: 10px;
     border: none;
-    font-family: Arial, serif;
     font-weight: 700;
     font-size: 14px;
     padding-left: 0.5em;
     height: 75%;
-    width: clamp(10vw,25vw,15vw);
-    color: #6c3106;
+    width: clamp(10vw, 25vw, 15vw);
 }
 
 .inputText::placeholder {
-    font-family: Arial, serif;
     color: #6c3106;
 }
-.inputText:focus{
+
+.inputText:focus {
     border: #f0b286 6px solid;
     outline: none;
 }

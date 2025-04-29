@@ -1,6 +1,6 @@
 import style from "./InputField.module.css"
 
-const InputField = ({name,value, holder, onChange,readonly=null}) => {
+const InputField = ({name, value, holder = null, onChange, readonly = null}) => {
     return (
         <input name={name}
                value={value}
