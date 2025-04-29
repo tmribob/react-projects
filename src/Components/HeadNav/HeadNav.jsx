@@ -2,7 +2,7 @@ import {NavLink} from "react-router-dom";
 import style from "./HeadNav.module.css"
 
 const HeadNav = () => {
-    const refs = ["posts", "pokemon", "english", "calculator"]
+    const refs = ["posts", "pokemon", "english", "calculator", "todo"]
     return (<nav className={style.navigator}>
         {
             refs.map((ref) => (

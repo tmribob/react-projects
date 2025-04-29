@@ -1,0 +1,10 @@
+.form {
+    height: 10vh;
+    background: #f0b28679;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns:  1fr  auto;
+    align-items: center;
+    gap: 25px;
+    padding: 0 25px;
+}
