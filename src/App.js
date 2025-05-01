@@ -1,5 +1,5 @@
 import "./App.css";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import PostsPage from "./Pages/PostsPage";
 import PokemonPage from "./Pages/PokemonPage";
 import EnglishPage from "./Pages/EnglishPage";
@@ -58,6 +58,7 @@ const App = () => {
             <HeadNav/>
             {notification.isVisible && <Notification context={notification.text}/>}
             <Routes>
+                <Route path="/" element={<Navigate to="/pokemon" replace />} />
                 <Route path={"/posts"} element={<PostsPage posts={posts}
                                                            addPost={addPost}
                                                            changeBodyInput={changeBodyInput}
