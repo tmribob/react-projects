@@ -1,9 +1,9 @@
-import Card from "../Card/Card";
-import style from "./Posts.module.css"
+import Post from "../Post/Post";
+import style from "./PostList.module.css"
 
-const Posts = ({posts, delPost}) => {
+const PostList = ({posts, delPost}) => {
     return (<div className={style.posts}>
-        {posts.map((post) => (<Card key={post.id}
+        {posts.map((post) => (<Post key={post.id}
                                     title={post.title}
                                     body={post.body}
                                     delPost={delPost}
@@ -11,4 +11,4 @@ const Posts = ({posts, delPost}) => {
     </div>);
 };
 
-export default Posts;
+export default PostList;

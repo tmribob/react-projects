@@ -1,5 +1,5 @@
-import FormHeader from "../Components/FormHeader/FormHeader";
-import Posts from "../Components/Posts/Posts";
+import PostCreator from "../Components/POSTS/PostCreator/PostCreator";
+import PostList from "../Components/POSTS/PostList/PostList";
 
 
 const PostsPage = ({
@@ -12,9 +12,9 @@ const PostsPage = ({
                        delPost
                    }) => {
     return (<>
-        <FormHeader titleState={{title: newPostTitle, setTitle: changeTitleInput}}
-                    bodyState={{body: newPostBody, setBody: changeBodyInput}} addPost={addPost}/>
-        <Posts posts={posts} delPost={delPost}/>
+        <PostCreator titleState={{title: newPostTitle, setTitle: changeTitleInput}}
+                     bodyState={{body: newPostBody, setBody: changeBodyInput}} addPost={addPost}/>
+        <PostList posts={posts} delPost={delPost}/>
     </>)
 }
 

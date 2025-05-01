@@ -1,6 +1,6 @@
-import style from "./InputField.module.css"
+import style from "./Input.module.css"
 
-const InputField = ({name, value, holder = null, onChange, disabled = false}) => {
+const Input = ({name, value, holder = null, onChange, disabled = false}) => {
     return (
         <input name={name}
                value={value}
@@ -11,4 +11,4 @@ const InputField = ({name, value, holder = null, onChange, disabled = false}) =>
     )
 }
 
-export default InputField
+export default Input

@@ -1,7 +1,7 @@
-import style from "./Card.module.css"
-import Button from "../Button/Button";
+import style from "./Post.module.css"
+import Button from "../../Button/Button";
 
-const Card = ({title, body, delPost, id}) => {
+const Post = ({title, body, delPost, id}) => {
     return (
         <div className={style.card}>
             <h3>{title}</h3>
@@ -11,4 +11,4 @@ const Card = ({title, body, delPost, id}) => {
     );
 };
 
-export default Card;
+export default Post;

@@ -1,4 +1,4 @@
-import TaskList from "../Components/TaskList/TaskList";
+import TaskList from "../Components/TODO/TaskList/TaskList";
 
 const TODOPage = ({
                       list,

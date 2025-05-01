@@ -1,7 +1,7 @@
 import style from './Task.module.css';
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import {RiDeleteBin2Line, RiEdit2Line, RiCheckFill} from "react-icons/ri";
-import InputField from "../InputField/InputField";
+import Input from "../../Input/Input";
 
 const Task = ({
                   task,
@@ -24,9 +24,9 @@ const Task = ({
                     content={<RiEdit2Line/>}
                     onClick={() => startEditing(task.id, task.text)}/>
         </> : <>
-            <InputField value={editingText}
-                        onChange={changeTask}
-                        holder={"New task Text"}/>
+            <Input value={editingText}
+                   onChange={changeTask}
+                   holder={"New task Text"}/>
             <Button content={<RiCheckFill/>}
                     onClick={saveTask}/>
         </>}
