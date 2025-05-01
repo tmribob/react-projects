@@ -28,6 +28,7 @@ const App = () => {
     } = UsePostsState(showNotification);
     const {getPokemon, pokemon} = UsePokemonState();
     const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
+    const {textCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
     const {
         textEnglish,
         inputText,
@@ -78,8 +79,8 @@ const App = () => {
                                                                clearSentence={clearSentence}
                                                                nextSentence={nextSentence}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate}
-                                                                    input={inputCalculate}
-                                                                    text={firstSummand + " " + operator}/>}/>
+                                                                    text={textCalculate}
+                                                                    intermediacy={firstSummand + " " + operator}/>}/>
                 <Route path={"/todo"} element={<TODOPage list={todoList}
                                                          inputTask={inputTask}
                                                          changeInput={changeInput}

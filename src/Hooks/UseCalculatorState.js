@@ -3,27 +3,27 @@ import Button from "../Components/Button/Button";
 import { FaDeleteLeft } from "react-icons/fa6";
 
 const UseCalculatorState = (showNotification) => {
-    const [inputCalculate, setInputCalculate] = useState('0');
+    const [textCalculate, setTextCalculate] = useState('0');
     let buttonsCalculate = [];
     const [firstSummand, setFirstSummand] = useState('');
     const [operator, setOperator] = useState('');
 
     const action = (element) => {
-        if (inputCalculate === '0') {
+        if (textCalculate === '0') {
             return;
         }
         if (firstSummand !== '') {
             equals(false);
             setOperator(element);
         } else {
-            setFirstSummand(() => inputCalculate);
+            setFirstSummand(() => textCalculate);
             setOperator(element);
-            setInputCalculate('0');
+            setTextCalculate('0');
         }
     }
 
     const addNumber = (digit) => {
-        setInputCalculate((text) => {
+        setTextCalculate((text) => {
             if (text === '0') {
                 return digit.toString();
             } else {
@@ -32,7 +32,7 @@ const UseCalculatorState = (showNotification) => {
         });
     }
     const back = () => {
-        setInputCalculate((text) => {
+        setTextCalculate((text) => {
             if (text.length === 1) {
                 return '0';
             } else if (text.length > 1) {
@@ -47,31 +47,31 @@ const UseCalculatorState = (showNotification) => {
         let result;
         switch (operator) {
             case '+':
-                result = parseFloat(firstSummand) + parseFloat(inputCalculate);
+                result = parseFloat(firstSummand) + parseFloat(textCalculate);
                 break;
             case '-':
-                result = parseFloat(firstSummand) - parseFloat(inputCalculate);
+                result = parseFloat(firstSummand) - parseFloat(textCalculate);
                 break;
             case '*':
-                result = parseFloat(firstSummand) * parseFloat(inputCalculate);
+                result = parseFloat(firstSummand) * parseFloat(textCalculate);
                 break;
             case '/':
-                if (inputCalculate === '0') {
+                if (textCalculate === '0') {
                     showNotification('На ноль делить нельзя');
                     return;
                 }
-                result = parseFloat(firstSummand) / parseFloat(inputCalculate);
+                result = parseFloat(firstSummand) / parseFloat(textCalculate);
                 break;
             default:
                 return;
         }
         if (isButton) {
-            setInputCalculate(result.toString());
+            setTextCalculate(result.toString());
             setOperator('');
             setFirstSummand('');
         } else {
             setFirstSummand(result.toString());
-            setInputCalculate('0');
+            setTextCalculate('0');
         }
     }
     const createButtons = () => {
@@ -95,7 +95,7 @@ const UseCalculatorState = (showNotification) => {
 
     createButtons();
 
-    return {inputCalculate, buttonsCalculate, firstSummand, operator};
+    return {textCalculate, buttonsCalculate, firstSummand, operator};
 }
 
 export default UseCalculatorState;

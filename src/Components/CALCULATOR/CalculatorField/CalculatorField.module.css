@@ -1,0 +1,24 @@
+.calculator {
+    margin: 0 37.5%;
+    width: 35%;
+    padding: 2.5%;
+    background: #f0b28679;
+    border-radius: 10px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.intermediateValues {
+    height: 1.5rem;
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 800;
+}
+
+.answer {
+    height: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+}

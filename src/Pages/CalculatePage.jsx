@@ -1,13 +1,9 @@
-import GridField from "../Components/GridField/GridField";
-import InputField from "../Components/InputField/InputField";
 
-const CalculatePage = ({input, buttons, text}) => {
+import CalculatorField from "../Components/CALCULATOR/CalculatorField/CalculatorField";
 
-    return (<div style={{padding: "0 40%"}}>
-        <InputField disabled value={input}/>
-        <p>{text}</p>
-        <GridField buttons={buttons}/>
-    </div>)
+const CalculatePage = ({intermediacy, buttons, text}) => {
+
+    return (<CalculatorField intermediacy={intermediacy} buttons={buttons} text={text}/>)
 }
 
 export default CalculatePage
