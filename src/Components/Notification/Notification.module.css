@@ -1,4 +1,4 @@
-.notification{
+.notification {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -7,10 +7,16 @@
     border: #6c3106 2px solid;
     padding: 0 15px;
     max-width: 10vw;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 
-.notification p{
+.text {
     font-weight: 700;
     font-size: 16px;
+}
+
+.notification.visibility {
+    opacity: 1;
 }
