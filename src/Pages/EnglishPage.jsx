@@ -1,8 +1,8 @@
-import style from "./EnglishPage.module.css"
-import Button from "../Components/Button/Button";
+import StartInputArea from "../Components/ENGLISH/StartInputArea/StartInputArea";
+import PlayField from "../Components/ENGLISH/PlayField/PlayField";
 
 const EnglishPage = ({
-                         text,
+                         status,
                          inputText,
                          changeInputText,
                          splitText,
@@ -15,24 +15,12 @@ const EnglishPage = ({
                      }) => {
 
     return (<>
-        {text.length === 0 && <form className={style.formInput}>
-            <textarea className={style.inputText} value={inputText} onChange={changeInputText}/>
-            <Button onClick={splitText} content={"Submit"}/>
-        </form>}
-        {text.length !== 0 && <>
-            <div>
-                {buttons.map((value, index) => (
-                    <Button key={index} onClick={() => addWord(index)} content={value}/>))}
+        {status === 'start' &&
+            <StartInputArea inputText={inputText} changeInputText={changeInputText} splitText={splitText}/>}
+        {status === 'playing' &&
+            <PlayField buttons={buttons} spans={spans} addWord={addWord} delWord={delWord} clearSentence={clearSentence}
+                       nextSentence={nextSentence}/>}
+    </>);
+};
 
-            </div>
-            <div>
-                {spans.map((value, index) => (
-                    <span key={index} onClick={() => delWord(index)}>{value}</span>))}
-            </div>
-            <Button onClick={clearSentence} content={"Clear"}/>
-            <Button onClick={nextSentence} content={"Submit"}/>
-        </>}
-    </>)
-}
-
-export default EnglishPage
+export default EnglishPage;

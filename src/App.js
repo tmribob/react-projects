@@ -27,10 +27,9 @@ const App = () => {
         newPostBody
     } = UsePostsState(showNotification);
     const {getPokemon, pokemon} = UsePokemonState();
-    const {inputCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
     const {textCalculate, buttonsCalculate, firstSummand, operator} = UseCalculatorState(showNotification);
     const {
-        textEnglish,
+        status,
         inputText,
         changeInputText,
         splitText,
@@ -68,7 +67,7 @@ const App = () => {
                                                            delPost={delPost}
                                                            newPostBody={newPostBody}/>}/>
                 <Route path={"/pokemon"} element={<PokemonPage newPokemon={getPokemon} id={pokemon}/>}/>
-                <Route path={"/english"} element={<EnglishPage text={textEnglish}
+                <Route path={"/english"} element={<EnglishPage status={status}
                                                                inputText={inputText}
                                                                changeInputText={changeInputText}
                                                                splitText={splitText}

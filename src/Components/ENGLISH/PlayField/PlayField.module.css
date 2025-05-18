@@ -1,0 +1,32 @@
+.divButtons {
+    display: flex;
+    gap: 10px;
+    padding: 3% 5%;
+    border-radius: 10px;
+    border: #f0b286 solid 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 7%;
+}
+
+.divSpans {
+    display: flex;
+    gap: 10px;
+    padding: 3% 5%;
+    border-radius: 10px;
+    border: #f0b286 solid 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 7%;
+}
+
+.playField {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 3%;
+}
+.divOperations{
+    display: flex;
+    justify-content: space-evenly;
+}

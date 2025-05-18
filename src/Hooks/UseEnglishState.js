@@ -7,6 +7,7 @@ const UseEnglishState = () => {
     const [inputText, setInputText] = useState("");
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
+    const [status,setStatus] = useState('start');
 
     const splitText = () => {
         const sentences = inputText.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
@@ -14,6 +15,7 @@ const UseEnglishState = () => {
         setButtons(() => (result[indexSentence]));
         textEnglish = result;
         currentSentence = result[indexSentence];
+        setStatus('playing');
     }
 
     const changeSentence = () => {
@@ -53,7 +55,7 @@ const UseEnglishState = () => {
         setSpans(spans.filter((_, indexSpan) => indexSpan !== index));
     }
     return {
-        textEnglish,
+        status,
         inputText,
         changeInputText,
         splitText,

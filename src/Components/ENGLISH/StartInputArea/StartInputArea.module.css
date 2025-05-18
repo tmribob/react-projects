@@ -1,0 +1,29 @@
+.inputText {
+    /*overflow: hidden;*/
+    resize: none;
+    box-sizing: border-box;
+    width: 50%;
+    border: #f0b286 4px solid;
+    border-radius: 10px;
+    height: 50%;
+    background: #9e643a;
+    padding: 1.5em;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: justify;
+    margin-top: 3%;
+}
+.formInput {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+}
+.inputText:focus {
+    outline: none;
+}
+.inputText::placeholder{
+    color: #f0b286;
+    font-size: 20px;
+}
