@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const UseEnglishState = () => {
+const UseEnglishState = (showNotification) => {
     const [textEnglish, setTextEnglish] = useState([]);
     const [indexSentence, setIndexSentence] = useState(0);
     const [inputText, setInputText] = useState("");
@@ -24,9 +24,13 @@ const UseEnglishState = () => {
     }
 
     const changeSentence = () => {
-        setIndexSentence(indexSentence + 1);
-        setSpans([]);
-        setButtons(mySetButtons(textEnglish[indexSentence + 1]));
+        if (indexSentence === textEnglish.length - 1) {
+            setStatus('start')
+        }else {
+            setIndexSentence(indexSentence + 1);
+            setSpans([]);
+            setButtons(mySetButtons(textEnglish[indexSentence + 1]));
+        }
     }
 
     const changeButton = (key) => {
@@ -43,15 +47,20 @@ const UseEnglishState = () => {
 
     const nextSentence = () => {
         const currentSentence = textEnglish[indexSentence];
-        console.log(spans.map(value => value.word));
-        console.log(currentSentence);
+        let mistakes = 0;
         if (spans.length === currentSentence.length) {
             for (let i = 0; i < spans.length; i++) {
                 if (spans[i].word !== currentSentence[i]) {
-                    return;
+                    mistakes++;
                 }
             }
-            changeSentence();
+            if (mistakes) {
+                showNotification(`You made ${mistakes} mistakes`);
+            } else {
+                changeSentence();
+            }
+        } else {
+            showNotification("Not all the words were chosen ");
         }
     }
 

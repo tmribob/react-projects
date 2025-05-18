@@ -38,7 +38,7 @@ const App = () => {
         changeButton,
         clearSentence,
         nextSentence
-    } = UseEnglishState();
+    } = UseEnglishState(showNotification);
     const {
         todoList,
         inputTask,
