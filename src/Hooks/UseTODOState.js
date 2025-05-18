@@ -12,6 +12,7 @@ const UseTODOState = (showNotification) => {
         if (inputTask.trim().length > 0) {
             setTodoList((tasks) => [...tasks, {text: inputTask, id: nextId}]);
             setInputTask("");
+            showNotification(`Task added`);
             setNextId(nextId + 1);
         } else {
             showNotification("Task is void");
@@ -19,6 +20,8 @@ const UseTODOState = (showNotification) => {
     }
     const delTask = (id) => {
         setTodoList((tasks) => tasks.filter((task) => task.id !== id));
+        showNotification(`Task delete`);
+
     }
     const startEditing = (id, text) => {
         setEditingID(id);
@@ -33,6 +36,7 @@ const UseTODOState = (showNotification) => {
                 }
                 return task;
             }));
+            showNotification(`Task edited`);
         } else {
             showNotification("Task is void");
         }

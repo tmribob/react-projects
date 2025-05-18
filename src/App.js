@@ -57,9 +57,9 @@ const App = () => {
     return (
         <BrowserRouter>
             <HeadNav/>
-            {notification.isVisible && <Notification context={notification.text}/>}
+            <Notification isVisible={notification.isVisible} context={notification.text}/>
             <Routes>
-                <Route path="/" element={<Navigate to="/pokemon" replace />} />
+                <Route path="/" element={<Navigate to="/pokemon" replace/>}/>
                 <Route path={"/posts"} element={<PostsPage posts={posts}
                                                            addPost={addPost}
                                                            changeBodyInput={changeBodyInput}
