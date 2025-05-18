@@ -8,6 +8,9 @@
     flex-wrap: wrap;
     min-height: 7%;
 }
+.isActive{
+    opacity: 0.5;
+}
 
 .divSpans {
     display: flex;
@@ -18,6 +21,10 @@
     justify-content: center;
     flex-wrap: wrap;
     min-height: 7%;
+}
+.divSpans span {
+    color: #000000;
+    font-weight: 800;
 }
 
 .playField {

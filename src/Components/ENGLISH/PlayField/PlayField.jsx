@@ -11,7 +11,8 @@ const PlayField = ({
     return (<div className={style.playField}>
         <div className={style.divButtons}>
             {buttons.map((value, index) => (
-                <Button key={value.key} onClick={() => changeButton(index)} content={value.word}/>))}
+                <Button addClass={value.isActive && style.isActive} key={value.key} onClick={() => changeButton(index)}
+                        content={value.word}/>))}
         </div>
         <div className={style.divSpans}>
             {spans.map((value) => (
