@@ -2,8 +2,7 @@ import {useState} from "react";
 
 const UseEnglishState = () => {
     const [textEnglish, setTextEnglish] = useState([]);
-    const [currentSentence, setCurrentSentence] = useState([]);
-    let indexNextSentence = 0;
+    const [indexSentence, setIndexSentence] = useState(0);
     const [inputText, setInputText] = useState("");
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
@@ -14,9 +13,9 @@ const UseEnglishState = () => {
 
         const sentences = inputText.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
         const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
-        setButtons(() => mySetButtons(result[indexNextSentence]));
+        setButtons(() => mySetButtons(result[0]));
         setTextEnglish(result);
-        setCurrentSentence(result[indexNextSentence]);
+        setIndexSentence(0);
         setStatus('playing');
     }
     const mySetButtons = (array) => {
@@ -24,10 +23,9 @@ const UseEnglishState = () => {
     }
 
     const changeSentence = () => {
-        setCurrentSentence(textEnglish[indexNextSentence+1]);
+        setIndexSentence(indexSentence + 1);
         setSpans([]);
-        setButtons(() => mySetButtons(textEnglish[indexNextSentence]));
-        indexNextSentence++;
+        setButtons(mySetButtons(textEnglish[indexSentence + 1]));
     }
 
     const changeButton = (key) => {
@@ -43,8 +41,7 @@ const UseEnglishState = () => {
     }
 
     const nextSentence = () => {
-        console.log(spans.map(value => value.word));
-        console.log(currentSentence);
+        const currentSentence = textEnglish[indexSentence];
         if (spans.length === currentSentence.length) {
             for (let i = 0; i < spans.length; i++) {
                 if (spans[i].word !== currentSentence[i]) {
@@ -57,7 +54,7 @@ const UseEnglishState = () => {
 
     const clearSentence = () => {
         setSpans([]);
-        setButtons(() => mySetButtons(currentSentence));
+        setButtons(() => mySetButtons(textEnglish[indexSentence]));
     }
 
     const changeInputText = (value) => {
