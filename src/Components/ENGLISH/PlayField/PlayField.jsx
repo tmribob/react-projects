@@ -4,19 +4,18 @@ import style from './PlayField.module.css'
 const PlayField = ({
                        buttons,
                        spans,
-                       addWord,
-                       delWord,
+                       changeButton,
                        clearSentence,
                        nextSentence
                    }) => {
     return (<div className={style.playField}>
         <div className={style.divButtons}>
             {buttons.map((value, index) => (
-                <Button key={index} onClick={() => addWord(index)} content={value}/>))}
+                <Button key={value.key} onClick={() => changeButton(index)} content={value.word}/>))}
         </div>
         <div className={style.divSpans}>
-            {spans.map((value, index) => (
-                <span key={index} onClick={() => delWord(index)}>{value}</span>))}
+            {spans.map((value) => (
+                <span key={value.key}>{value.word}</span>))}
         </div>
         <div className={style.divOperations}>
             <Button onClick={clearSentence} content={"Clear"}/>

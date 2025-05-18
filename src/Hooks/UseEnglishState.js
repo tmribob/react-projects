@@ -1,39 +1,53 @@
 import {useState} from "react";
 
 const UseEnglishState = () => {
-    let textEnglish = [];
-    let currentSentence = [];
-    let indexSentence = 0;
+    const [textEnglish, setTextEnglish] = useState([]);
+    const [currentSentence, setCurrentSentence] = useState([]);
+    let indexNextSentence = 0;
     const [inputText, setInputText] = useState("");
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
-    const [status,setStatus] = useState('start');
+    const [status, setStatus] = useState('start');
 
     const splitText = () => {
+        if (!inputText.trim()) return;
+
         const sentences = inputText.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
         const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
-        setButtons(() => (result[indexSentence]));
-        textEnglish = result;
-        currentSentence = result[indexSentence];
+        setButtons(() => mySetButtons(result[indexNextSentence]));
+        setTextEnglish(result);
+        setCurrentSentence(result[indexNextSentence]);
         setStatus('playing');
+    }
+    const mySetButtons = (array) => {
+        return array.map((word, index) => ({word, key: index, isActive: false}));
     }
 
     const changeSentence = () => {
-        currentSentence = textEnglish[indexSentence + 1];
+        setCurrentSentence(textEnglish[indexNextSentence+1]);
         setSpans([]);
-        setButtons(textEnglish[indexSentence + 1]);
-        indexSentence++;
+        setButtons(() => mySetButtons(textEnglish[indexNextSentence]));
+        indexNextSentence++;
     }
 
-    const addWord = (index) => {
-        setSpans([...spans, buttons[index]]);
-        setButtons(buttons.filter((_, indexBut) => indexBut !== index));
+    const changeButton = (key) => {
+        const currentButton = buttons.find(button => button.key === key);
+        if (!currentButton.isActive) {
+            setSpans([...spans, {word: currentButton.word, key: currentButton.key}]);
+        } else {
+            setSpans(spans.filter((span) => span.key !== currentButton.key));
+        }
+        setButtons(buttons.map((button) => {
+            return button.key === key ? {...button, isActive: !button.isActive} : button;
+        }));
     }
 
     const nextSentence = () => {
+        console.log(spans.map(value => value.word));
+        console.log(currentSentence);
         if (spans.length === currentSentence.length) {
             for (let i = 0; i < spans.length; i++) {
-                if (spans[i] !== currentSentence[i]) {
+                if (spans[i].word !== currentSentence[i]) {
                     return;
                 }
             }
@@ -43,16 +57,11 @@ const UseEnglishState = () => {
 
     const clearSentence = () => {
         setSpans([]);
-        setButtons(currentSentence);
+        setButtons(() => mySetButtons(currentSentence));
     }
 
     const changeInputText = (value) => {
         setInputText(value.target.value);
-    }
-
-    const delWord = (index) => {
-        setButtons([...buttons, spans[index]]);
-        setSpans(spans.filter((_, indexSpan) => indexSpan !== index));
     }
     return {
         status,
@@ -61,11 +70,10 @@ const UseEnglishState = () => {
         splitText,
         buttons,
         spans,
-        addWord,
-        delWord,
+        changeButton,
         clearSentence,
         nextSentence
-    };
+    }
 }
 
-export default UseEnglishState
+export default UseEnglishState;

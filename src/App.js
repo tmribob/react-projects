@@ -35,8 +35,7 @@ const App = () => {
         splitText,
         buttons,
         spans,
-        addWord,
-        delWord,
+        changeButton,
         clearSentence,
         nextSentence
     } = UseEnglishState();
@@ -73,8 +72,7 @@ const App = () => {
                                                                splitText={splitText}
                                                                buttons={buttons}
                                                                spans={spans}
-                                                               addWord={addWord}
-                                                               delWord={delWord}
+                                                               changeButton={changeButton}
                                                                clearSentence={clearSentence}
                                                                nextSentence={nextSentence}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate}

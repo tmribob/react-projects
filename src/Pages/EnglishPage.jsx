@@ -8,8 +8,7 @@ const EnglishPage = ({
                          splitText,
                          buttons,
                          spans,
-                         addWord,
-                         delWord,
+                         changeButton,
                          clearSentence,
                          nextSentence
                      }) => {
@@ -18,7 +17,7 @@ const EnglishPage = ({
         {status === 'start' &&
             <StartInputArea inputText={inputText} changeInputText={changeInputText} splitText={splitText}/>}
         {status === 'playing' &&
-            <PlayField buttons={buttons} spans={spans} addWord={addWord} delWord={delWord} clearSentence={clearSentence}
+            <PlayField buttons={buttons} spans={spans} changeButton={changeButton}  clearSentence={clearSentence}
                        nextSentence={nextSentence}/>}
     </>);
 };
