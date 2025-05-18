@@ -19,7 +19,8 @@ const UseEnglishState = () => {
         setStatus('playing');
     }
     const mySetButtons = (array) => {
-        return array.map((word, index) => ({word, key: index, isActive: false}));
+        const newArray = [...array];
+        return newArray.sort(() => Math.random() - 0.5).map((word, index) => ({word, key: index, isActive: false}));
     }
 
     const changeSentence = () => {
@@ -42,6 +43,8 @@ const UseEnglishState = () => {
 
     const nextSentence = () => {
         const currentSentence = textEnglish[indexSentence];
+        console.log(spans.map(value => value.word));
+        console.log(currentSentence);
         if (spans.length === currentSentence.length) {
             for (let i = 0; i < spans.length; i++) {
                 if (spans[i].word !== currentSentence[i]) {
