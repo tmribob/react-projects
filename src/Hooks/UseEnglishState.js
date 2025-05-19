@@ -7,6 +7,7 @@ const UseEnglishState = (showNotification) => {
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
     const [status, setStatus] = useState('start');
+    const [progress, setProgress] = useState([])
 
     const splitText = () => {
         if (!inputText.trim()) return;
@@ -17,6 +18,7 @@ const UseEnglishState = (showNotification) => {
         setTextEnglish(result);
         setIndexSentence(0);
         setStatus('playing');
+        setProgress(result.map((_, i) => i === 0 ? "play" : "unplayed"));
     }
     const mySetButtons = (array) => {
         const newArray = [...array];
@@ -26,10 +28,15 @@ const UseEnglishState = (showNotification) => {
     const changeSentence = () => {
         if (indexSentence === textEnglish.length - 1) {
             setStatus('start')
-        }else {
+        } else {
             setIndexSentence(indexSentence + 1);
             setSpans([]);
             setButtons(mySetButtons(textEnglish[indexSentence + 1]));
+            setProgress(progress.map((value, index) => {
+                if (value === "play" || value === "completed") return "completed"
+                else if (index === indexSentence + 1) return "play"
+                else return "unplayed"
+            }))
         }
     }
 
@@ -81,7 +88,8 @@ const UseEnglishState = (showNotification) => {
         spans,
         changeButton,
         clearSentence,
-        nextSentence
+        nextSentence,
+        progress
     }
 }
 

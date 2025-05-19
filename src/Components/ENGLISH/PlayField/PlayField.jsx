@@ -1,14 +1,18 @@
 import Button from "../../Button/Button";
 import style from './PlayField.module.css'
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const PlayField = ({
                        buttons,
                        spans,
                        changeButton,
                        clearSentence,
-                       nextSentence
+                       nextSentence,
+                       progress
                    }) => {
     return (<div className={style.playField}>
+        <ProgressBar progress={progress} />
+
         <div className={style.divButtons}>
             {buttons.map((value, index) => (
                 <Button addClass={value.isActive && style.isActive} key={value.key} onClick={() => changeButton(index)}

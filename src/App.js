@@ -37,7 +37,8 @@ const App = () => {
         spans,
         changeButton,
         clearSentence,
-        nextSentence
+        nextSentence,
+        progress
     } = UseEnglishState(showNotification);
     const {
         todoList,
@@ -74,7 +75,8 @@ const App = () => {
                                                                spans={spans}
                                                                changeButton={changeButton}
                                                                clearSentence={clearSentence}
-                                                               nextSentence={nextSentence}/>}/>
+                                                               nextSentence={nextSentence}
+                                                               progress={progress}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate}
                                                                     text={textCalculate}
                                                                     intermediacy={firstSummand + " " + operator}/>}/>
