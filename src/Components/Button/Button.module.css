@@ -10,3 +10,9 @@
 .button:disabled{
     opacity: 0.5;
 }
+
+.button:hover{
+    border: #f0b286 4px solid;
+    background: #9e643a;
+    opacity: 0.7;
+}
