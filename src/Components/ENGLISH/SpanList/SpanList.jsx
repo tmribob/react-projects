@@ -1,15 +1,18 @@
 import style from "./SpanList.module.css";
 
-const SpanList = ({array}) => {
+const SpanList = ({array, changeButton}) => {
     return (<div className={style.spanList}>
-        {array.map((value) => {
-            if (value.color === "green") {
-                return <span className={style.isTrue} key={value.key}>{value.word}</span>
-            } else if (value.color === "red") {
-                return <span className={style.isFalse} key={value.key}>{value.word}</span>
+        {array.map((value) => (
+            <span key={value.key} onClick={() => changeButton(value.key)} className={() => {
+                if (value.color === "green") {
+                    return style.isTrue
+                } else if (value.color === "red") {
+                    return style.isFalse
+                }
+                return style.span
             }
-            return <span className={style.span} key={value.key}>{value.word}</span>
-        })}
+            }>{value.word}</span>
+        ))}
     </div>);
 }
 

@@ -15,7 +15,7 @@ const PlayField = ({
     return (<div className={style.playField}>
         <ProgressBar progress={progress}/>
         <ButtonList array={buttons} changeButton={changeButton}/>
-        <SpanList array={spans}/>
+        <SpanList array={spans} changeButton={changeButton}/>
         <div className={style.divOperations}>
             <Button onClick={clearSentence} content={"Clear"}/>
             <Button onClick={nextSentence} content={"Submit"}/>
