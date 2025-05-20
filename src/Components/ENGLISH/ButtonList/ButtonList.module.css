@@ -1,0 +1,15 @@
+.isActive {
+    opacity: 0.5;
+}
+
+.buttonList {
+    display: flex;
+    gap: 10px;
+    padding: 3% 5%;
+    border-radius: 10px;
+    border: #f0b286 solid 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 7%;
+    min-width: 50%;
+}

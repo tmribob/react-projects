@@ -1,0 +1,24 @@
+.spanList {
+    display: flex;
+    gap: 10px;
+    padding: 3% 5%;
+    border-radius: 10px;
+    border: #f0b286 solid 4px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 7%;
+    min-width: 50%;
+}
+
+.spanList span {
+    color: #000000;
+    font-weight: 800;
+}
+
+.isTrue {
+    color: #00FF00;
+}
+
+.isFalse {
+    color: #FF0000;
+}
