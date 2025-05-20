@@ -13,3 +13,6 @@
     min-height: 7%;
     min-width: 50%;
 }
+.buttonList button {
+    min-width: 4rem;
+}

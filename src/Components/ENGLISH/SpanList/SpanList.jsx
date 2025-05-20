@@ -8,7 +8,7 @@ const SpanList = ({array}) => {
             } else if (value.color === "red") {
                 return <span className={style.isFalse} key={value.key}>{value.word}</span>
             }
-            return <span key={value.key}>{value.word}</span>
+            return <span className={style.span} key={value.key}>{value.word}</span>
         })}
     </div>);
 }

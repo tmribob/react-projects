@@ -8,11 +8,11 @@
     flex-wrap: wrap;
     min-height: 7%;
     min-width: 50%;
+    font-weight: 800;
 }
 
-.spanList span {
+.span {
     color: #000000;
-    font-weight: 800;
 }
 
 .isTrue {

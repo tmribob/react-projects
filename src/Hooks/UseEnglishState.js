@@ -33,9 +33,12 @@ const UseEnglishState = (showNotification) => {
             setSpans([]);
             setButtons(mySetButtons(textEnglish[indexSentence + 1]));
             setProgress(progress.map((value, index) => {
-                if (value === "play" || value === "completed") return "completed"
-                else if (index === indexSentence + 1) return "play"
-                else return "unplayed"
+                if (value === "play" || value === "completed") {
+                    return "completed"
+                } else if (index === indexSentence + 1) {
+                    return "play"
+                }
+                return "unplayed"
             }))
         }
     }
@@ -54,15 +57,14 @@ const UseEnglishState = (showNotification) => {
 
     const nextSentence = () => {
         const currentSentence = textEnglish[indexSentence];
-        let mistakes = 0;
         if (spans.length === currentSentence.length) {
-            for (let i = 0; i < spans.length; i++) {
-                if (spans[i].word !== currentSentence[i]) {
-                    mistakes++;
-                }
-            }
-            if (mistakes) {
-                showNotification(`You made ${mistakes} mistakes`);
+            if (spans.some((span, index) => span.word !== currentSentence[index])) {
+                setSpans(prevSpans => prevSpans.map((value, index) => ({
+                        ...value,
+                        color: value.word === currentSentence[index] ? "green" : "red"
+                    })
+                ))
+                showNotification(`You made  mistakes`);
             } else {
                 changeSentence();
             }
