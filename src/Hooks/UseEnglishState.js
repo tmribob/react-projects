@@ -1,4 +1,5 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import TextStorage from "../TextStorage";
 
 const UseEnglishState = (showNotification) => {
     const [text, setText] = useState([]);
@@ -11,6 +12,10 @@ const UseEnglishState = (showNotification) => {
     const [status, setStatus] = useState('start');
     const [progress, setProgress] = useState([]);
 
+    useEffect(() => {
+        setTexts(TextStorage.getAll());
+    }, []);
+
     const confirmText = () => {
         if (!inputText.trim()) {
             showNotification("Text is not stated");
@@ -21,15 +26,15 @@ const UseEnglishState = (showNotification) => {
             return;
         }
         const splitedText = splitText(inputText);
-        setStatus("start")
-        setTexts(prevText => [...prevText, {text: splitedText, name: inputName}]);
+        setStatus("start");
+        setTexts(TextStorage.add({text: splitedText, name: inputName}));
     }
     const addText = () => {
-        setStatus("adding")
+        setStatus("adding");
     }
 
     const delText = (index) => {
-        setTexts(prevText => prevText.filter((text, i) => i !== index))
+        setTexts(TextStorage.remove(index));
     }
 
     const startGame = (index) => {
@@ -130,7 +135,7 @@ const UseEnglishState = (showNotification) => {
 
     const changeInputName = (value) => {
         const name = value.target.value;
-        if (name.length <= 45) {
+        if (name.length <= 55) {
             setInputName(value.target.value);
         } else {
             showNotification("Name is so long")
