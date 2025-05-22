@@ -53,7 +53,13 @@ const App = () => {
         progress,
         goHome,
         currentIndex,
-        changeSentence
+        changeSentence,
+        texts,
+        confirmText,
+        inputName,
+        changeInputName,
+        addText,
+        delText
     } = UseEnglishState(showNotification);
     const {
         todoList,
@@ -94,6 +100,12 @@ const App = () => {
                                                                progress={progress}
                                                                goHome={goHome}
                                                                currentIndex={currentIndex}
+                                                               texts={texts}
+                                                               confirmText={confirmText}
+                                                               inputName={inputName}
+                                                               addText={addText}
+                                                               delText={delText}
+                                                               changeInputName={changeInputName}
                                                                changeSentence={changeSentence}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate}
                                                                     text={textCalculate}

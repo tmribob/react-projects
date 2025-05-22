@@ -2,35 +2,54 @@ import {useState} from "react";
 
 const UseEnglishState = (showNotification) => {
     const [text, setText] = useState([]);
+    const [texts, setTexts] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [inputText, setInputText] = useState("");
+    const [inputName, setInputName] = useState("");
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
     const [status, setStatus] = useState('start');
     const [progress, setProgress] = useState([]);
 
-    const startGame = () => {
+    const confirmText = () => {
         if (!inputText.trim()) {
             showNotification("Text is not stated");
             return;
         }
+        if (!inputName.trim()) {
+            showNotification("Name is not stated");
+            return;
+        }
+        const splitedText = splitText(inputText);
+        setStatus("start")
+        setTexts(prevText => [...prevText, {text: splitedText, name: inputName}]);
+    }
+    const addText = () => {
+        setStatus("adding")
+    }
+
+    const delText = (index) => {
+        setTexts(prevText => prevText.filter((text, i) => i !== index))
+    }
+
+    const startGame = (index) => {
         setStatus('playing');
         setCurrentIndex(0);
-        splitText(inputText);
+        const currentText = texts[index].text;
+        setButtons(currentText.map(sentence => shuffleArray(sentence).map((word, index) => ({
+            word, key: index, isActive: false
+        }))));
+        setText(currentText);
+        setSpans(currentText.map(() => []));
+        setProgress(currentText.map(() => "uncompleted"));
     }
 
 
     const splitText = (input) => {
         const sentences = input.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
-        const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
-        setButtons(result.map(sentence => shuffleArray(sentence).map((word, index) => ({
-            word,
-            key: index,
-            isActive: false
-        }))));
-        setText(result);
-        setSpans(result.map(() => []));
-        setProgress(result.map(() => "uncompleted"));
+        setInputName("");
+        setInputText("");
+        return sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
     }
     const shuffleArray = (array) => {
         const newArray = [...array];
@@ -62,15 +81,13 @@ const UseEnglishState = (showNotification) => {
             if (spans[currentIndex].some((span, index) => span.word !== currentSentence[index])) {
                 showNotification(`You made mistakes`);
                 setSpans(prevSpans => prevSpans.map((sentence, index) => {
-                        if (index !== currentIndex) {
-                            return sentence;
-                        }
-                        return sentence.map((value, index) => ({
-                            ...value,
-                            color: value.word === currentSentence[index] ? "green" : "red"
-                        }));
+                    if (index !== currentIndex) {
+                        return sentence;
                     }
-                ));
+                    return sentence.map((value, index) => ({
+                        ...value, color: value.word === currentSentence[index] ? "green" : "red"
+                    }));
+                }));
             } else {
                 if (currentIndex === text.length - 1) {
                     setStatus('start');
@@ -85,7 +102,13 @@ const UseEnglishState = (showNotification) => {
     }
 
     const changeSentence = (index) => {
-        setCurrentIndex(index);
+        for (let i = index; i < text.length; i++) {
+            if (progress[i] === "completed") {
+                continue;
+            }
+            setCurrentIndex(i);
+            return;
+        }
     }
 
     const clearSentence = () => {
@@ -104,6 +127,15 @@ const UseEnglishState = (showNotification) => {
     const changeInputText = (value) => {
         setInputText(value.target.value);
     }
+
+    const changeInputName = (value) => {
+        const name = value.target.value;
+        if (name.length <= 45) {
+            setInputName(value.target.value);
+        } else {
+            showNotification("Name is so long")
+        }
+    }
     return {
         status,
         inputText,
@@ -117,7 +149,13 @@ const UseEnglishState = (showNotification) => {
         progress,
         goHome,
         changeSentence,
-        currentIndex
+        currentIndex,
+        texts,
+        confirmText,
+        inputName,
+        changeInputName,
+        addText,
+        delText
     }
 }
 

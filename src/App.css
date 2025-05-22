@@ -13,5 +13,6 @@ body {
     padding: 0 10%;
 }
 
-
-
+* {
+    padding: 0;
+}
