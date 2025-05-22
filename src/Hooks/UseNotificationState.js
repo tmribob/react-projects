@@ -5,7 +5,7 @@ const UseNotificationState = () => {
 
     useEffect(() => {
         let timer;
-        if (notification) {
+        if (notification.isVisible) {
             timer = setTimeout(() => {
                 setNotification(prev => ({...prev, isVisible: false}));
             }, 3000);
