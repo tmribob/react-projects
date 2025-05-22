@@ -10,9 +10,9 @@
 }
 
 .answer {
-    height: 1.5rem;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+    height: 1.5em;
+    font-size: 1.25em;
+    line-height: 1.5em;
     font-weight: 800;
     background: #9e643a;
     text-align: right;
@@ -22,8 +22,8 @@
 
 .intermediateValues {
     height: 1.5rem;
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+    font-size: 1.25em;
+    line-height: 1.5em;
     margin: 0;
     font-weight: 800;
     text-align: right;

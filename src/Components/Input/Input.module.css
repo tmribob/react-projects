@@ -2,7 +2,7 @@
     background: #f0b28679;
     border-radius: 10px;
     border: none;
-    font-size: 14px;
+    font-size: 0.875em;
     padding-left: 0.5em;
     height: 75%;
     width: clamp(10vw, 25vw, 15vw);

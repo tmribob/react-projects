@@ -17,9 +17,9 @@ const Task = ({
     const isAnyEditing = editingID !== null;
 
     return (<div className={style.element}>
-        <p className={style.number}>№{number}</p>
+        <p className={style.number}>№{number+1}</p>
         {!isThisEditing ? <>
-            <p className={style.text}>{task.text}</p>
+            <p>{task.text}</p>
             <Button disabled={isAnyEditing}
                     content={<RiEdit2Line/>}
                     onClick={() => startEditing(task.id, task.text)}/>
