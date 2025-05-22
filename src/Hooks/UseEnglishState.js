@@ -55,33 +55,28 @@ const UseEnglishState = (showNotification) => {
             return sentence.map((button) => button.key === key ? {...button, isActive: !button.isActive} : button);
         }));
     }
-    const checkMistakes = () => {
-        const currentSentence = text[currentIndex];
-        if (spans[currentIndex].some((span, index) => span.word !== currentSentence[index])) {
-            setSpans(prevSpans => prevSpans.map((sentence, index) => {
-                    if (index !== currentIndex) {
-                        return sentence;
-                    }
-                    return sentence.map((value, index) => ({
-                        ...value,
-                        color: value.word === currentSentence[index] ? "green" : "red"
-                    }));
-                }
-            ));
-            showNotification(`You made mistakes`);
-            return true;
-        }
-        return false;
-    }
 
     const nextSentence = () => {
-        if (spans[currentIndex].length === text[currentIndex].length) {
-            if (!checkMistakes()) {
+        const currentSentence = text[currentIndex];
+        if (spans[currentIndex].length === currentSentence.length) {
+            if (spans[currentIndex].some((span, index) => span.word !== currentSentence[index])) {
+                showNotification(`You made mistakes`);
+                setSpans(prevSpans => prevSpans.map((sentence, index) => {
+                        if (index !== currentIndex) {
+                            return sentence;
+                        }
+                        return sentence.map((value, index) => ({
+                            ...value,
+                            color: value.word === currentSentence[index] ? "green" : "red"
+                        }));
+                    }
+                ));
+            } else {
                 if (currentIndex === text.length - 1) {
                     setStatus('start');
                 } else {
-                    setCurrentIndex(() => currentIndex + 1);
                     setProgress(progress.map((value, index) => index === currentIndex ? "completed" : value));
+                    setCurrentIndex(currentIndex + 1);
                 }
             }
         } else {
