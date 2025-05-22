@@ -3,9 +3,9 @@
     border-radius: 10px;
     border: none;
     font-size: 0.875em;
-    padding-left: 0.5em;
-    height: 75%;
-    width: clamp(10vw, 25vw, 15vw);
+    padding: 0 0.5em;
+    height: calc(100% - 12px);
+    width: calc(100% - 12px - 1em);
     transition: all 0.3s ease-in-out;
 }
 
@@ -13,11 +13,17 @@
     color: #6c3106;
 }
 
-.inputText:focus {
+.inputText:focus, .inputText:hover {
     border: #f0b286 6px solid;
     outline: none;
 }
 
 .inputText:disabled {
     opacity: 0.5;
+}
+
+.divInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
