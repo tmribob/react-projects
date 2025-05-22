@@ -9,10 +9,10 @@
     background: #9e643a;
     padding: 1.5em;
     font-size: 14px;
-    font-weight: 700;
     text-align: justify;
     margin-top: 3%;
 }
+
 .formInput {
     height: 90%;
     display: flex;
@@ -20,10 +20,12 @@
     align-items: center;
     gap: 5%;
 }
+
 .inputText:focus {
     outline: none;
 }
-.inputText::placeholder{
+
+.inputText::placeholder {
     color: #f0b286;
     font-size: 20px;
 }

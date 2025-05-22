@@ -4,6 +4,8 @@ body {
     margin: 0;
     font-family: Arial, serif;
     color: #6c3106;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 #root {

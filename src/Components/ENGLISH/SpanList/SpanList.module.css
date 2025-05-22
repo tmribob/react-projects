@@ -9,12 +9,14 @@
     min-height: 7%;
     min-width: 50%;
     font-weight: 800;
+    transition: opacity, color 0.3s ease;
 }
 
 .span {
     color: #000000;
 }
-.spanList span:hover{
+
+.spanList span:hover {
     opacity: 0.5;
 }
 

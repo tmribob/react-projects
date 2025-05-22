@@ -11,12 +11,6 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-
-.text {
-    font-weight: 700;
-    font-size: 16px;
-}
-
 .notification.visibility {
     opacity: 1;
 }

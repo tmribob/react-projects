@@ -2,11 +2,11 @@
     background: #f0b28679;
     border-radius: 10px;
     border: none;
-    font-weight: 700;
     font-size: 14px;
     padding-left: 0.5em;
     height: 75%;
     width: clamp(10vw, 25vw, 15vw);
+    transition: all 0.3s ease-in-out;
 }
 
 .inputText::placeholder {
@@ -17,6 +17,7 @@
     border: #f0b286 6px solid;
     outline: none;
 }
-.inputText:disabled{
+
+.inputText:disabled {
     opacity: 0.5;
 }
