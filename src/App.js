@@ -32,13 +32,16 @@ const App = () => {
         status,
         inputText,
         changeInputText,
-        splitText,
+        startGame,
         buttons,
         spans,
         changeButton,
         clearSentence,
         nextSentence,
-        progress
+        progress,
+        goHome,
+        currentIndex,
+        changeSentence
     } = UseEnglishState(showNotification);
     const {
         todoList,
@@ -70,13 +73,16 @@ const App = () => {
                 <Route path={"/english"} element={<EnglishPage status={status}
                                                                inputText={inputText}
                                                                changeInputText={changeInputText}
-                                                               splitText={splitText}
+                                                               startGame={startGame}
                                                                buttons={buttons}
                                                                spans={spans}
                                                                changeButton={changeButton}
                                                                clearSentence={clearSentence}
                                                                nextSentence={nextSentence}
-                                                               progress={progress}/>}/>
+                                                               progress={progress}
+                                                               goHome={goHome}
+                                                               currentIndex={currentIndex}
+                                                               changeSentence={changeSentence}/>}/>
                 <Route path={"/calculator"} element={<CalculatePage buttons={buttonsCalculate}
                                                                     text={textCalculate}
                                                                     intermediacy={firstSummand + " " + operator}/>}/>

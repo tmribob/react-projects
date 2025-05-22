@@ -5,21 +5,25 @@ const EnglishPage = ({
                          status,
                          inputText,
                          changeInputText,
-                         splitText,
+                         startGame,
                          buttons,
                          spans,
                          changeButton,
                          clearSentence,
                          nextSentence,
-                         progress
+                         progress,
+                         goHome,
+                         currentIndex,
+                         changeSentence
                      }) => {
 
     return (<>
         {status === 'start' &&
-            <StartInputArea inputText={inputText} changeInputText={changeInputText} splitText={splitText}/>}
+            <StartInputArea inputText={inputText} changeInputText={changeInputText} startGame={startGame}/>}
         {status === 'playing' &&
             <PlayField buttons={buttons} spans={spans} changeButton={changeButton} clearSentence={clearSentence}
-                       nextSentence={nextSentence} progress={progress}/>}
+                       nextSentence={nextSentence} progress={progress} goHome={goHome} currentIndex={currentIndex}
+                       changeSentence={changeSentence}/>}
     </>);
 };
 

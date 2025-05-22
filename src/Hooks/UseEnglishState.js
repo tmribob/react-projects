@@ -1,81 +1,109 @@
 import {useState} from "react";
 
 const UseEnglishState = (showNotification) => {
-    const [textEnglish, setTextEnglish] = useState([]);
-    const [indexSentence, setIndexSentence] = useState(0);
+    const [text, setText] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [inputText, setInputText] = useState("");
     const [buttons, setButtons] = useState([]);
     const [spans, setSpans] = useState([]);
     const [status, setStatus] = useState('start');
-    const [progress, setProgress] = useState([])
+    const [progress, setProgress] = useState([]);
 
-    const splitText = () => {
-        if (!inputText.trim()) return;
-
-        const sentences = inputText.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
-        const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
-        setButtons(() => mySetButtons(result[0]));
-        setTextEnglish(result);
-        setIndexSentence(0);
-        setStatus('playing');
-        setProgress(result.map((_, i) => i === 0 ? "play" : "unplayed"));
-    }
-    const mySetButtons = (array) => {
-        const newArray = [...array];
-        return newArray.sort(() => Math.random() - 0.5).map((word, index) => ({word, key: index, isActive: false}));
-    }
-
-    const changeSentence = () => {
-        if (indexSentence === textEnglish.length - 1) {
-            setStatus('start')
-        } else {
-            setIndexSentence(indexSentence + 1);
-            setSpans([]);
-            setButtons(mySetButtons(textEnglish[indexSentence + 1]));
-            setProgress(progress.map((value, index) => {
-                if (value === "play" || value === "completed") {
-                    return "completed"
-                } else if (index === indexSentence + 1) {
-                    return "play"
-                }
-                return "unplayed"
-            }))
+    const startGame = () => {
+        if (!inputText.trim()) {
+            showNotification("Text is not stated");
+            return;
         }
+        setStatus('playing');
+        setCurrentIndex(0);
+        splitText(inputText);
+    }
+
+
+    const splitText = (input) => {
+        const sentences = input.split(/[.!?]\s*/).filter(sentence => sentence.length > 0);
+        const result = sentences.map(sentence => sentence.match(/[а-яА-ЯёЁa-zA-Z0-9]+(?:['`][а-яА-ЯёЁa-zA-Z0-9]+)*/g));
+        setButtons(result.map(sentence => shuffleArray(sentence).map((word, index) => ({
+            word,
+            key: index,
+            isActive: false
+        }))));
+        setText(result);
+        setSpans(result.map(() => []));
+        setProgress(result.map(() => "uncompleted"));
+    }
+    const shuffleArray = (array) => {
+        const newArray = [...array];
+        return newArray.sort(() => Math.random() - 0.5);
     }
 
     const changeButton = (key) => {
-        const currentButton = buttons.find(button => button.key === key);
-        if (!currentButton.isActive) {
-            setSpans([...spans, {word: currentButton.word, key: currentButton.key}]);
-        } else {
-            setSpans(spans.filter((span) => span.key !== currentButton.key));
-        }
-        setButtons(buttons.map((button) => {
-            return button.key === key ? {...button, isActive: !button.isActive} : button;
+        const currentButton = buttons[currentIndex].find(button => button.key === key);
+        setSpans(prevSpan => prevSpan.map((sentence, index) => {
+            if (index !== currentIndex) {
+                return sentence;
+            } else if (currentButton.isActive) {
+                return sentence.filter((span) => span.key !== currentButton.key);
+            }
+            return [...sentence, {word: currentButton.word, key: currentButton.key}];
+
+        }))
+        setButtons(prevButton => prevButton.map((sentence, index) => {
+            if (index !== currentIndex) {
+                return sentence;
+            }
+            return sentence.map((button) => button.key === key ? {...button, isActive: !button.isActive} : button);
         }));
+    }
+    const checkMistakes = () => {
+        const currentSentence = text[currentIndex];
+        if (spans[currentIndex].some((span, index) => span.word !== currentSentence[index])) {
+            setSpans(prevSpans => prevSpans.map((sentence, index) => {
+                    if (index !== currentIndex) {
+                        return sentence;
+                    }
+                    return sentence.map((value, index) => ({
+                        ...value,
+                        color: value.word === currentSentence[index] ? "green" : "red"
+                    }));
+                }
+            ));
+            showNotification(`You made mistakes`);
+            return true;
+        }
+        return false;
     }
 
     const nextSentence = () => {
-        const currentSentence = textEnglish[indexSentence];
-        if (spans.length === currentSentence.length) {
-            if (spans.some((span, index) => span.word !== currentSentence[index])) {
-                setSpans(prevSpans => prevSpans.map((value, index) => ({
-                        ...value,
-                        color: value.word === currentSentence[index] ? "green" : "red"
-                    })
-                ))
-                showNotification(`You made  mistakes`);
-            } else {
-                changeSentence();
+        if (spans[currentIndex].length === text[currentIndex].length) {
+            if (!checkMistakes()) {
+                if (currentIndex === text.length - 1) {
+                    setStatus('start');
+                } else {
+                    setCurrentIndex(() => currentIndex + 1);
+                    setProgress(progress.map((value, index) => index === currentIndex ? "completed" : value));
+                }
             }
         } else {
             showNotification("Not all the words were chosen ");
         }
     }
 
+    const changeSentence = (index) => {
+        setCurrentIndex(index);
+    }
+
     const clearSentence = () => {
-        setSpans([]);
-        setButtons(() => mySetButtons(textEnglish[indexSentence]));
+        setSpans(prevSpan => prevSpan.map((sentence, index) => index === currentIndex ? [] : sentence));
+        setButtons(prevButton => prevButton.map((sentence, index) => {
+            if (index !== currentIndex) {
+                return sentence;
+            }
+            return sentence.map((button) => ({...button, isActive: false}));
+        }));
+    }
+    const goHome = () => {
+        setStatus("start");
     }
 
     const changeInputText = (value) => {
@@ -85,13 +113,16 @@ const UseEnglishState = (showNotification) => {
         status,
         inputText,
         changeInputText,
-        splitText,
+        startGame,
         buttons,
         spans,
         changeButton,
         clearSentence,
         nextSentence,
-        progress
+        progress,
+        goHome,
+        changeSentence,
+        currentIndex
     }
 }
 

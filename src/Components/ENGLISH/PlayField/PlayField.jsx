@@ -10,15 +10,19 @@ const PlayField = ({
                        changeButton,
                        clearSentence,
                        nextSentence,
-                       progress
+                       progress,
+                       goHome,
+                       currentIndex,
+                       changeSentence
                    }) => {
     return (<div className={style.playField}>
-        <ProgressBar progress={progress}/>
-        <ButtonList array={buttons} changeButton={changeButton}/>
-        <SpanList array={spans} changeButton={changeButton}/>
+        <ProgressBar progress={progress} changeSentence={changeSentence} currentIndex={currentIndex}/>
+        <ButtonList array={buttons.filter((_, index) => index === currentIndex)} changeButton={changeButton}/>
+        <SpanList array={spans.filter((_, index) => index === currentIndex)} delSpan={changeButton}/>
         <div className={style.divOperations}>
             <Button onClick={clearSentence} content={"Clear"}/>
-            <Button onClick={nextSentence} content={"Submit"}/>
+            <Button onClick={goHome} content={"Home"}/>
+            <Button onClick={nextSentence} content={"Continue"}/>
         </div>
     </div>);
 };
